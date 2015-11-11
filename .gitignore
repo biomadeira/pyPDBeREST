@@ -55,3 +55,12 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Pycharm
+.idea
+
+# requirements
+/lib/
+
+# ipython notebooks
+.ipynb_checkpoints
