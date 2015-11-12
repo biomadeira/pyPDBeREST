@@ -1,6 +1,9 @@
 # pyPDBeREST
 A python wrapper for the [PDBe REST API](http://www.ebi.ac.uk/pdbe/api/doc/), inspired by [pyEnsemblRest](https://github.com/pyOpenSci/pyEnsemblRest).
 
+**DISCLAIMER** - This project is still not functional and under development.
+
+
 ### Setup
 
 ```
@@ -25,21 +28,43 @@ p = pyPDBeREST()
 Alternatively overriding the base url for the endpoints... 
 
 ```python
-# using new the dev branch of the api
+# using new ednpoints in the dev branch of the api
 p = pyPDBeREST(base_url='http://wwwdev.ebi.ac.uk/pdbe/api/doc/')
 ```
+
+Printing out all the available method endpoints...
+
+```python
+print(p.methods())
+```
+
+...and respective output.
+
+
+```
+Some output.
+```
+
 
 Printing out all the available endpoints...
 
 ```python
-print(p.endpoints())
+print(p.PDB.endpoints())
 ```
+
+...and respective output.
+
+
+```
+Some output.
+```
+
 
 ##### GET
 Example of a GET query...
 
 ```python
-p = pyPDBeREST.getPDBsummaryById(id='1cbs')
+p = pyPDBeREST.PDB.getSummary(pdbid='1cbs')
 ```
 
 ...and respective output.
@@ -56,7 +81,7 @@ An example POST query...
  
 ```python
 # up to 1000 pdb ids can be queried with post methods
-p = pyPDBeREST.getPDBsummaryById(id=['1cbs', '2pah'])
+p = pyPDBeREST.PDB.getSummary(pdbid=['1cbs', '2pah'])
 ```
  
 ...and respective JSON output.
