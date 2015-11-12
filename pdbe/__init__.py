@@ -19,6 +19,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+
+from .pdberest import pyPDBeREST
+from .exceptions import RestError, RestRateLimitError, RestServiceUnavailable
+
 __author__ = "Fábio Madeira"
 __copyright__ = "Copyright 2015, Fábio Madeira"
 __credits__ = ["Fábio Madeira"]
@@ -27,6 +31,3 @@ __version__ = "0.1.1=0"
 __maintainer__ = "Fábio Madeira"
 __email__ = "fabiomadeira@me.com"
 __status__ = "beta"
-
-from .pdberest import pyPDBeREST
-from .exceptions import RestError, ServiceUnavailable
