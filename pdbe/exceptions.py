@@ -60,3 +60,10 @@ class RestServiceUnavailable(RestError):
         Raised when the service is down.
     """
     pass
+
+
+class PostNotSupported(RestError):
+    """
+        Raised when POST method is not supported.
+    """
+    pass
