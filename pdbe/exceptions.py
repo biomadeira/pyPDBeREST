@@ -19,30 +19,30 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from config import ensembl_http_status_codes
+from config import http_status_codes
 
 
-class EnsemblRestError(Exception):
+class RestError(Exception):
     """
-        Generic error class, catch-all for most EnsemblRest issues.
-        Special cases are handled by EnsemblRestRateLimitError and EnsemblRestServiceUnavailable.
+        Generic error class, catch-all for most PDBe API issues.
+        Special cases are handled by PDBeRestRateLimitError and PDBeRestServiceUnavailable.
     """
 
     def __init__(self, msg, error_code=None, rate_reset=None, rate_limit=None, rate_remaining=None):
         self.error_code = error_code
 
-        if error_code is not None and error_code in ensembl_http_status_codes:
-            msg = 'EnsEMBL REST API returned a %s (%s), %s' % \
-                  (error_code, ensembl_http_status_codes[error_code][0], msg)
+        if error_code is not None and error_code in http_status_codes:
+            msg = 'PDBe REST API returned a %s (%s), %s' % \
+                  (error_code, http_status_codes[error_code][0], msg)
 
-        super(EnsemblRestError, self).__init__(msg)
+        super(RestError, self).__init__(msg)
 
     @property
     def msg(self):
         return self.args[0]
 
 
-class EnsemblRestRateLimitError(EnsemblRestError):
+class RestRateLimitError(RestError):
     """
         Raised when you've hit a rate limit.
         The amount of seconds to retry your request in will be appended to the message.
@@ -50,11 +50,12 @@ class EnsemblRestRateLimitError(EnsemblRestError):
 
     def __init__(self, msg, error_code, rate_reset=None, rate_limit=None, rate_remaining=None):
         if isinstance(rate_limit, int):
-            msg = '%s (Rate limit hit:  %d seconds)' % (msg, rate_reset, rate_limit, rate_remaining)
-        EnsemblRestError.__init__(self, msg, error_code=error_code)
+            msg = '%s (Rate limit hit:  %d seconds)' % (msg, rate_limit)
+            # msg = '%s (Rate limit hit:  %d seconds)' % (msg, rate_reset, rate_limit, rate_remaining)
+        RestError.__init__(self, msg, error_code=error_code)
 
 
-class EnsemblRestServiceUnavailable(EnsemblRestError):
+class RestServiceUnavailable(RestError):
     """
         Raised when the service is down.
     """
