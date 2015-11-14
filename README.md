@@ -46,7 +46,7 @@ Some output.
 ```
 
 
-Printing out all the available endpoints...
+Printing out all the available endpoints for a particular method...
 
 ```python
 print(p.PDB.endpoints())
