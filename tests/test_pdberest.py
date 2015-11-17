@@ -6,13 +6,17 @@ Created on 10/06/2015
 
 """
 
+import os
 import sys
+import inspect
 import unittest
 import logging
 
-from pdbe import pyPDBeREST
-from pdbe import config
-from pdbe import exceptions
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(1, parentdir)
+
+import pdbe
 
 
 class TestPDBeREST(unittest.TestCase):
@@ -21,7 +25,7 @@ class TestPDBeREST(unittest.TestCase):
     def setUp(self):
         """Initialize the framework for testing."""
 
-        self.p = pyPDBeREST()
+        self.p = pdbe.pyPDBeREST()
         self.pdb = self.p.PDB
 
     def tearDown(self):
@@ -35,21 +39,21 @@ class TestPDBeREST(unittest.TestCase):
         Testing whether we can access values defined in the config.
         """
 
-        self.assertIsInstance(config.api_endpoints, dict)
-        self.assertIsInstance(config.default_url, str)
-        self.assertIsInstance(config.http_status_codes, dict)
-        self.assertIsInstance(config.user_agent, dict)
-        self.assertIsInstance(config.content_type, dict)
+        self.assertIsInstance(pdbe.config.api_endpoints, dict)
+        self.assertIsInstance(pdbe.config.default_url, str)
+        self.assertIsInstance(pdbe.config.http_status_codes, dict)
+        self.assertIsInstance(pdbe.config.user_agent, dict)
+        self.assertIsInstance(pdbe.config.content_type, dict)
 
     def test_asserting_config_values_pyPDBeREST(self):
         """
         Testing whether we can access values defined in the config.
         """
 
-        self.assertIn('PDB', config.api_endpoints)
-        self.assertIn('getSummary', config.api_endpoints['PDB'])
-        self.assertIn('method', config.api_endpoints['PDB']['getSummary'])
-        self.assertEqual(config.api_endpoints['PDB']['getSummary']['method'],
+        self.assertIn('PDB', pdbe.config.api_endpoints)
+        self.assertIn('getSummary', pdbe.config.api_endpoints['PDB'])
+        self.assertIn('method', pdbe.config.api_endpoints['PDB']['getSummary'])
+        self.assertEqual(pdbe.config.api_endpoints['PDB']['getSummary']['method'],
                          ['GET', 'POST'])
 
     def test_loading_custom_exceptions_pyPDBeREST(self):
@@ -57,10 +61,10 @@ class TestPDBeREST(unittest.TestCase):
         Testing loading custom exceptions.
         """
 
-        self.assertIsInstance(exceptions.RestError, object)
-        self.assertIsInstance(exceptions.RestRateLimitError, object)
-        self.assertIsInstance(exceptions.RestServiceUnavailable, object)
-        self.assertIsInstance(exceptions.RestPostNotSupported, object)
+        self.assertIsInstance(pdbe.exceptions.RestError, object)
+        self.assertIsInstance(pdbe.exceptions.RestRateLimitError, object)
+        self.assertIsInstance(pdbe.exceptions.RestServiceUnavailable, object)
+        self.assertIsInstance(pdbe.exceptions.RestPostNotSupported, object)
 
     def test_loading_module_pyPDBeREST(self):
         """
@@ -95,11 +99,11 @@ class TestPDBeREST(unittest.TestCase):
 
         # updating session values
         # limited to some attributes: base_url, method and pretty_json
-        self.p = pyPDBeREST(method='POST')
+        self.p = pdbe.pyPDBeREST(method='POST')
         self.assertEqual(self.p.method, 'POST')
-        self.p = pyPDBeREST(pretty_json=False)
+        self.p = pdbe.pyPDBeREST(pretty_json=False)
         self.assertEqual(self.p.pretty_json, False)
-        self.p = pyPDBeREST(base_url='http://some.address.com/')
+        self.p = pdbe.pyPDBeREST(base_url='http://some.address.com/')
         self.assertEqual(self.p.base_url, 'http://some.address.com/')
 
         # or simply setting class attributes
@@ -297,7 +301,7 @@ class TestPDBeREST(unittest.TestCase):
         Testing when everything is correct but the input values.
         """
 
-        with self.assertRaises(exceptions.RestError):
+        with self.assertRaises(pdbe.exceptions.RestError):
             self.pdb.getSummary(pdbid='invalid_id')
 
     def test_wrong_request_method_pyPDBeREST(self):
