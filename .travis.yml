@@ -14,5 +14,6 @@ install:
 script:
   - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then python -m unittest discover; fi
   - if [[ $TRAVIS_PYTHON_VERSION == '3.4' ]]; then python -m unittest discover; fi
+  - coverage run --source=pdbe setup.py test
 after_success:
   - coveralls
