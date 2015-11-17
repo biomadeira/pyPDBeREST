@@ -19,17 +19,22 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from . import __version__
+# from . import __version__
+# set user agent
+# user_agent = {'User-Agent': 'pyPDBeREST v' + __version__}
+user_agent = {'User-Agent': 'pyPDBeREST'}
+content_type = {'Content-Type': 'application/json'}
 
 # set urls
-default_url = 'http://www.ebi.ac.uk/pdbe/api/'
+default_url = 'https://www.ebi.ac.uk/pdbe/'
 
 # api lookup tables
 var_types = {
     # pdb
     'pdbid': {
         'type': str,
-        'doc': '4-character PDB id code. (e.g. 1cbs)'
+        'doc': '4-character PDB id code. (e.g. 1cbs).\n'
+               'For POST requests, data should contain one or more comma-separated ids.'
     },
     'chainid': {
         'type': str,
@@ -122,7 +127,6 @@ var_types = {
     },
 }
 
-
 # PDB endpoint
 pdb_endpoints = {
     'getSummary': {
@@ -131,8 +135,8 @@ pdb_endpoints = {
                'such as the title of the entry, list of depositors, date of '
                'deposition, date of release, date of latest revision, experimental '
                'method, list of related entries in case split entries, etc.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/summary/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/summary/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -142,8 +146,8 @@ pdb_endpoints = {
                'modelled in the entry, such as entity id, description, type, polymer-type '
                '(if applicable), number of copies in the entry, sample preparation method, '
                'source organism(s) (if applicable), etc.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/molecules/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/molecules/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -152,8 +156,8 @@ pdb_endpoints = {
                'This call provides details of publications associated with an entry, such '
                'as title of the article, journal name, year of publication, volume, pages, '
                'doi, pubmed_id, etc. Primary citation is listed first.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/publications/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/publications/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -163,8 +167,8 @@ pdb_endpoints = {
                'These are articles which cite the primary citation of the entry, or '
                'open-access articles which mention the entry id without explicitly citing '
                'the primary citation of an entry.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/related_publications/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/related_publications/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -176,8 +180,8 @@ pdb_endpoints = {
                'dimensions, R and Rfree, refinement program, etc. For NMR, details of spectrometer, '
                'sample, spectra, refinement, etc. are included. For EM, details of specimen, imaging, '
                'acquisition, reconstruction, fitting etc. are included.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/experiment/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/experiment/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -185,8 +189,8 @@ pdb_endpoints = {
         'doc': 'NMR Resources(s).\n'
                'This call provides URLs of available additional resources for NMR entries. E.g., '
                'mapping between structure (PDB) and chemical shift (BMRB) entries.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/nmr_resources/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/nmr_resources/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -194,8 +198,8 @@ pdb_endpoints = {
         'doc': 'Ligands.\n'
                'This call provides a a list of modelled instances of ligands, i.e. "bound" '
                'molecules that are not waters.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/ligand_monomers/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/ligand_monomers/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -203,8 +207,8 @@ pdb_endpoints = {
         'doc': 'Modified residues.\n'
                'This call provides a list of modelled instances of modified amino acids or '
                'nucleotides in protein, DNA or RNA chains.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/modified_AA_or_NA/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/modified_AA_or_NA/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -213,8 +217,8 @@ pdb_endpoints = {
                'This call provides a list of modelled instances of mutated amino acids or '
                'nucleotides in protein, DNA or RNA chains. (Note that at present it does '
                'not provide information about mutated nucleotides.)',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/mutated_AA_or_NA/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/mutated_AA_or_NA/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -223,8 +227,8 @@ pdb_endpoints = {
                'This call provides status of a PDB entry (released, obsoleted, on-hold etc) '
                'along with some other information such as authors, title, experimental '
                'method, etc.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/status/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/status/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -232,8 +236,8 @@ pdb_endpoints = {
         'doc': 'Observed ranges.\n'
                'This call provides observed ranges, i.e. segments of structural coverage, '
                'of polymeric molecules that are modelled fully or partly.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/polymer_coverage/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/polymer_coverage/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -242,8 +246,8 @@ pdb_endpoints = {
                'This call provides details about residue ranges of regular secondary structure '
                '(alpha helices and beta strands) found in protein chains of the entry. For '
                'strands, sheet id can be used to identify a beta sheet.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/secondary_structure/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/secondary_structure/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -252,8 +256,8 @@ pdb_endpoints = {
                'This call lists all residues (modelled or otherwise) in the entry, except waters, '
                'along with details of the fraction of expected atoms modelled for the residue and '
                'any alternate conformers.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/residue_listing/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/residue_listing/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -262,9 +266,10 @@ pdb_endpoints = {
                'This call lists all residues (modelled or otherwise) in the entry, except waters, '
                'along with details of the fraction of expected atoms modelled for the residue and '
                'any alternate conformers.',
-        'vars': [var_types['pdbid'], var_types['chainid']],
-        'url': 'pdb/entry/residue_listing/{{pdbid}}/chain/{{chainid}}',
-        'method': ['GET', 'POST'],
+        'var': {'pdbid': var_types['pdbid'],
+                'chainid': var_types['chainid']},
+        'url': 'api/pdb/entry/residue_listing/{{pdbid}}/chain/{{chainid}}',
+        'method': ['GET'],
         'content_type': 'application/json'
     },
     'getBindingSites': {
@@ -272,8 +277,8 @@ pdb_endpoints = {
                'This call provides details on binding sites in the entry as per STRUCT_SITE records '
                'in PDB files (or mmcif equivalent thereof), such as ligand, residues in the site, '
                'description of the site, etc.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/binding_sites/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/binding_sites/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -283,8 +288,8 @@ pdb_endpoints = {
                'biological assembly files, FASTA file for sequences, SIFTS cross reference XML '
                'files, validation XML files, X-ray structure factor file, NMR experimental '
                'constraints files, etc. Please note that these files are also available on https.',
-        'vars': [var_types['pdbid']],
-        'url': 'pdb/entry/files/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/files/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -298,8 +303,8 @@ compounds_endpoints = {
                'in the PDB Chemical Component Dictionary, such as formula, formula weight, '
                'smiles (canonical, OpenEye), inchi, inchi-key, name, systematic names, '
                'Chembl id, creation date, revision date, etc.',
-        'vars': [var_types['compid']],
-        'url': 'pdb/compound/summary/{{compid}}',
+        'var': {'compid': var_types['compid']},
+        'url': 'api/pdb/compound/summary/{{compid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -309,8 +314,8 @@ compounds_endpoints = {
                'in the PDB Chemical Component Dictionary. For each atoms, properties such as '
                'name, element symbol, ideal coordinates, stereochemistry, aromaticity (when '
                'applicable), etc. are available.',
-        'vars': [var_types['compid']],
-        'url': 'pdb/compound/atoms/{{compid}}',
+        'var': {'compid': var_types['compid']},
+        'url': 'api/pdb/compound/atoms/{{compid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -320,8 +325,8 @@ compounds_endpoints = {
                'in the PDB Chemical Component Dictionary. For each bond, properties such as atom '
                'names, bond type, stereochemistry and aromaticity (when applicable) etc. '
                'are available.',
-        'vars': [var_types['compid']],
-        'url': 'pdb/compound/bonds/{{compid}}',
+        'var': {'compid': var_types['compid']},
+        'url': 'api/pdb/compound/bonds/{{compid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -329,8 +334,8 @@ compounds_endpoints = {
         'doc': 'PDB entries containing the compound.\n'
                'This set of calls returns a list of PDB entries that contain the compound defined '
                'in the PDB Chemical Component Dictionary.',
-        'vars': [var_types['compid']],
-        'url': 'pdb/compound/in_pdb/{{compid}}',
+        'var': {'compid': var_types['compid']},
+        'url': 'api/pdb/compound/in_pdb/{{compid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -358,9 +363,11 @@ emdb_endpoints = {
                '    experiment: bundle of "vitrification", "imaging", "fitted", "image_acquisition", '
                'and "processing" calls\n'
                '    related_by_publication: returns list of entries that share the same publication',
-        'vars': [var_types['property'], var_types['emdbid']],
-        'url': 'emdb/entry/{{property}}/{{emdbid}}',
-        'method': ['GET', 'POST'],
+        'var': {'property': var_types['property'],
+                'emdbid': var_types['emdbid']
+                },
+        'url': 'api/emdb/entry/{{property}}/{{emdbid}}',
+        'method': ['GET'],
         'content_type': 'application/json'
     },
 }
@@ -373,64 +380,64 @@ sifts_endpoints = {
                'InterPro, CATH, SCOP, IntEnz and GO accessions (and vice versa).'
                'PDB id-code OR UniProt accession code OR Pfam accession code OR Interpro accession '
                'code OR CATH cathcode OR SCOP sunid OR IntEnz EC code OR GO accession',
-        'vars': [var_types['accession']],
-        'url': 'mappings/{{id}}',
+        'var': {'accession': var_types['accession']},
+        'url': 'api/mappings/{{accession}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getPdbUniprot': {
         'doc': 'SIFTS Mappings (PDB -> UniProt).\n'
                'Mappings (as assigned by the SIFTS process) from PDB structures to UniProt.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/uniprot/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/uniprot/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getPdbInterpro': {
         'doc': 'SIFTS Mappings (PDB -> InterPro).\n'
                'Mappings (as assigned by the SIFTS process) from PDB structures to Interpro.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/interpro/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/interpro/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getPdbPfam': {
         'doc': 'SIFTS Mappings (PDB -> Pfam).\n'
                'Mappings (as assigned by the SIFTS process) from PDB structures to Pfam.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/pfam/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/pfam/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getPdbCath': {
         'doc': 'SIFTS Mappings (PDB -> CATH).\n'
                'Mappings (as assigned by the SIFTS process) from PDB structures to CATH.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/cath/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/cath/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getPdbScop': {
         'doc': 'SIFTS Mappings (PDB -> SCOP).\n'
                'Mappings (as assigned by the SIFTS process) from PDB structures to SCOP.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/scop/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/scop/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getPdbGo': {
         'doc': 'SIFTS Mappings (PDB -> GO).\n'
                'Mappings (as assigned by the SIFTS process) from PDB structures to GO.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/go/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/go/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getPdbEc': {
         'doc': 'SIFTS Mappings (PDB -> EC).\n'
                'Mappings (as assigned by the SIFTS process) from PDB structures to EC.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/ec/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/ec/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -438,8 +445,8 @@ sifts_endpoints = {
         'doc': 'Mappings to sequence domain resources (i.e. Pfam and InterPro).\n'
                'Mappings from protein chains to both Pfam and InterPro as assigned by the '
                'SIFTS process.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/sequence_domains/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/sequence_domains/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -447,16 +454,18 @@ sifts_endpoints = {
         'doc': 'Mappings to structural domain resources (i.e. SCOP and CATH).\n'
                'Mappings from protein chains to both SCOP and CATH as assigned by the '
                'SIFTS process.',
-        'vars': [var_types['pdbid']],
-        'url': 'mappings/structural_domains/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/structural_domains/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getHomologene': {
         'doc': 'Homologene.\n'
                'Homologene polypeptides for a given PDB entity id.',
-        'vars': [var_types['pdbid'], var_types['entity']],
-        'url': 'mappings/homologene/{{pdbid}}/{{entity}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'entity': var_types['entity']
+                },
+        'url': 'api/mappings/homologene/{{pdbid}}/{{entity}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -464,8 +473,8 @@ sifts_endpoints = {
         'doc': 'Best Structures.\n'
                'The list of PDB structures mapping to a UniProt accession sorted by '
                'coverage of the protein and, if the same, resolution.',
-        'vars': [var_types['uniprotid']],
-        'url': 'mappings/best_structures/{uniprotid}}',
+        'var': {'uniprotid': var_types['uniprotid']},
+        'url': 'api/mappings/best_structures/{{uniprotid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -476,21 +485,24 @@ pisa_endpoints = {
     'getVersion': {
         'doc': 'PISA API version.\n'
                'Returns PISA API command line program version number.',
-        'url': 'pisa/version',
+        'var': {},
+        'url': 'api/pisa/version',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getNumberEntries': {
         'doc': 'PISA API counts of number of entries.\n'
                'Returns number of entries in the database.',
-        'url': 'pisa/counts',
+        'var': {},
+        'url': 'api/pisa/counts',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getPdbsList': {
         'doc': 'PISA API pdblist.\n'
                'Returns a list of PDB codes in the PISA database.',
-        'url': 'pisa/pdblist',
+        'var': {},
+        'url': 'api/pisa/pdblist',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -499,8 +511,8 @@ pisa_endpoints = {
         'doc': 'List of asis assembly ids for a given PDB code.\n'
                'Returns a list of "asis" assembly identifiers. '
                'This complex represents by the coordinate section only of the PDB entry.',
-        'vars': [var_types['pdbid']],
-        'url': 'pisa/asislist/{{pdbid}}',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pisa/asislist/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -508,8 +520,10 @@ pisa_endpoints = {
         'doc': 'Asis details.\n'
                'Returns details of the requested "asis" assembly. '
                'This complex represents by the coordinate section only of the PDB entry.',
-        'vars': [var_types['pdbid'], var_types['assemblyid']],
-        'url': 'pisa/asis/{{pdbid}}/{{assemblyid}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid']
+                },
+        'url': 'api/pisa/asis/{{pdbid}}/{{assemblyid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -517,8 +531,10 @@ pisa_endpoints = {
         'doc': 'Summary information for asis assembly.\n'
                'Returns "asis" assembly energetics summary. '
                'This complex represents by the coordinate section only of the PDB entry.',
-        'vars': [var_types['pdbid'], var_types['assemblyid']],
-        'url': 'pisa/asissummary/{{pdbid}}/{{assemblyid}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid']
+                },
+        'url': 'api/pisa/asissummary/{{pdbid}}/{{assemblyid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -526,8 +542,11 @@ pisa_endpoints = {
         'doc': 'Information on asis assembly divided by component.\n'
                'Returns "asis" assembly component, "energetics", "interfaces" or "monomers". '
                'Please refer to the PISA web page for the content of each component.',
-        'vars': [var_types['pdbid'], var_types['assemblyid'], var_types['assembly_component']],
-        'url': 'pisa/asiscomponent/{{pdbid}}/{{assemblyid}}/{{asis_component}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid'],
+                'assembly_component': var_types['assembly_component']
+                },
+        'url': 'api/pisa/asiscomponent/{{pdbid}}/{{assemblyid}}/{{assembly_component}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -535,33 +554,43 @@ pisa_endpoints = {
     'getAssembly': {
         'doc': 'Details of a given assembly.\n'
                'Returns details of the requested PISA assembly.',
-        'vars': [var_types['pdbid'], var_types['assemblyid'], var_types['set'],
-                 var_types['assembly_index']],
-        'url': 'pisa/assembly/{{pdbid}}/{{assemblyid}}/{{set}}/{{assembly_index}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid'],
+                'set': var_types['set'],
+                'assembly_index': var_types['assembly_index'],
+                },
+        'url': 'api/pisa/assembly/{{pdbid}}/{{assemblyid}}/{{set}}/{{assembly_index}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getAnalysis': {
         'doc': 'Analysis.\n'
                'Returns an analysis of the entry.',
-        'vars': [var_types['pdbid'], var_types['assemblyid']],
-        'url': 'pisa/analysis/{{pdbid}}/{{assemblyid}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid']
+                },
+        'url': 'api/pisa/analysis/{{pdbid}}/{{assemblyid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getAssembliesList': {
         'doc': 'List of assemblies.\n'
                'Returns a list of assemblies.',
-        'vars': [var_types['pdbid'], var_types['assemblyid']],
-        'url': 'pisa/assemblylist/{{pdbid}}/{{assemblyid}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid']
+                },
+        'url': 'api/pisa/assemblylist/{{pdbid}}/{{assemblyid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getAssemblyDetails': {
         'doc': 'Assembly details.\n'
                'Returns details of the requested PISA assembly.',
-        'vars': [var_types['pdbid'], var_types['assemblyid'], var_types['assembly_index']],
-        'url': 'pisa/assemblydetail/{{pdbid}}/{{assemblyid}}/{{assembly_index}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid'],
+                'assembly_index': var_types['assembly_index']
+                },
+        'url': 'api/pisa/assemblydetail/{{pdbid}}/{{assemblyid}}/{{assembly_index}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -569,9 +598,12 @@ pisa_endpoints = {
         'doc': 'Assembly component.\n'
                'Returns details of one component of the requested PISA assembly. '
                'Please refer to the PISA web page for the content of each component.',
-        'vars': [var_types['pdbid'], var_types['assemblyid'], var_types['assembly_index'],
-                 var_types['assembly_component']],
-        'url': 'pisa/assemblycomponent/{{pdbid}}/{{assemblyid}}/{{assembly_index}}/{{assembly_component}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid'],
+                'assembly_index': var_types['assembly_index'],
+                'assembly_component': var_types['assembly_component']
+                },
+        'url': 'api/pisa/assemblycomponent/{{pdbid}}/{{assemblyid}}/{{assembly_index}}/{{assembly_component}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -580,16 +612,21 @@ pisa_endpoints = {
     'getMonomersList': {
         'doc': 'List of monomers.\n'
                'Returns a list of monomers.',
-        'vars': [var_types['pdbid'], var_types['assemblyid']],
-        'url': 'pisa/monomerlist/{{pdbid}}/{{assemblyid}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid']
+                },
+        'url': 'api/pisa/monomerlist/{{pdbid}}/{{assemblyid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getMonomerDetails': {
         'doc': 'Monomer details.\n'
                'Returns details of the requested PISA monomer.',
-        'vars': [var_types['pdbid'], var_types['assemblyid'], var_types['monomer_index']],
-        'url': 'pisa/monomerdetail/{{pdbid}}/{{assemblyid}}/{{monomer_index}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid'],
+                'monomer_index': var_types['monomer_index']
+                },
+        'url': 'api/pisa/monomerdetail/{{pdbid}}/{{assemblyid}}/{{monomer_index}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -597,9 +634,12 @@ pisa_endpoints = {
         'doc': 'Monomer component.\n'
                'Returns components of the requested PISA monomer. '
                'Please refer to the PISA web page for the content of each component.',
-        'vars': [var_types['pdbid'], var_types['assemblyid'], var_types['monomer_index'],
-                 var_types['monomer_component']],
-        'url': 'pisa/monomercomponent/{{pdbid}}/{{assemblyid}}/{{monomer_index}}/{{monomer_component}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid'],
+                'monomer_index': var_types['monomer_index'],
+                'monomer_component': var_types['monomer_component']
+                },
+        'url': 'api/pisa/monomercomponent/{{pdbid}}/{{assemblyid}}/{{monomer_index}}/{{monomer_component}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -607,41 +647,53 @@ pisa_endpoints = {
     'getInterfaces': {
         'doc': 'Interfaces.\n'
                'Returns details of the interface for given pdbid and assembly id.',
-        'vars': [var_types['pdbid'], var_types['assemblyid']],
-        'url': 'pisa/interface/{{pdbid}}/{{assemblyid}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid']
+                },
+        'url': 'api/pisa/interface/{{pdbid}}/{{assemblyid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getNumberInterfaces': {
         'doc': 'The number of interfaces calculated by PISA.\n'
                'Returns number of interfaces for a given pdbid/assemblyid.',
-        'vars': [var_types['pdbid'], var_types['assemblyid']],
-        'url': 'pisa/noofinterfaces/{{pdbid}}/{{assemblyid}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid']
+                },
+        'url': 'api/pisa/noofinterfaces/{{pdbid}}/{{assemblyid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getInterfacesList': {
         'doc': 'List of interfaces.\n'
                'Returns a list of interfaces with a summary of each interface.',
-        'vars': [var_types['pdbid'], var_types['assemblyid']],
-        'url': 'pisa/interfacelist/{{pdbid}}/{{assemblyid}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid']
+                },
+        'url': 'api/pisa/interfacelist/{{pdbid}}/{{assemblyid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getInterfaceDetails': {
         'doc': 'Interface details.\n'
                'Returns details of the requested interface.',
-        'vars': [var_types['pdbid'], var_types['assemblyid'], var_types['interface_index']],
-        'url': 'pisa/interfacedetail/{{pdbid}}/{{assemblyid}}/{{interface_index}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid'],
+                'interface_index': var_types['interface_index']
+                },
+        'url': 'api/pisa/interfacedetail/{{pdbid}}/{{assemblyid}}/{{interface_index}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getInterfaceComponent': {
         'doc': 'Interface component.\n'
                'Returns details of the requested interface.',
-        'vars': [var_types['pdbid'], var_types['assemblyid'], var_types['interface_index'],
-                 var_types['interface_component']],
-        'url': 'pisa/interfacecomponent/{{pdbid}}/{{assemblyid}}/{{interface_index}}/{{interface_component}}',
+        'var': {'pdbid': var_types['pdbid'],
+                'assemblyid': var_types['assemblyid'],
+                'interface_index': var_types['interface_index'],
+                'interface_component': var_types['interface_component']
+                },
+        'url': 'api/pisa/interfacecomponent/{{pdbid}}/{{assemblyid}}/{{interface_index}}/{{interface_component}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -652,39 +704,42 @@ ssm_endpoints = {
     'getVersion': {
         'doc': 'Fold API version.\n'
                'Returns Fold API command line program version number.',
-        'url': 'ssm/version',
+        'var': {},
+        'url': 'api/ssm/version',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getMatchStandard': {
         'doc': 'Fold API matchstandard.\n'
                'Returns details of match using standard parameters.',
-        'url': 'ssm/matchstandard/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/ssm/matchstandard/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getNumberMatches': {
         'doc': 'Fold API noofmatches.\n'
                'Returns number of matches.',
-        'url': 'ssm/noofmatches/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/ssm/noofmatches/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getMatchSummary': {
         'doc': 'Fold API matchsummary.\n'
                'Returns summary of matches.',
-        'url': 'ssm/matchsummary/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/ssm/matchsummary/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
     'getMatchDetail': {
         'doc': 'Fold API matchdetail.\n'
                'Returns details of match.',
-        'url': 'ssm/matchdetail/{{pdbid}}/{{ssm_index}}',
-        'vars': [var_types['pdbid'], var_types['ssm_index']],
+        'var': {'pdbid': var_types['pdbid'],
+                'ssm_index': var_types['ssm_index']
+                },
+        'url': 'api/ssm/matchdetail/{{pdbid}}/{{ssm_index}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -697,8 +752,8 @@ validation_endpoints = {
                'Metrics here are the ones recommended by validation task force. '
                'Global is against whole PDB archive and relative is against entries of '
                'comparable resolution.',
-        'url': 'validation/global-percentiles/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/global-percentiles/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -710,8 +765,8 @@ validation_endpoints = {
                'Wherever a constitutent percentile is 0, the harmonic mean is defined to '
                'be 0. When constituent percentiles are all unavailable, the harmonic mean '
                'is null.',
-        'url': 'validation/summary_quality_scores/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/summary_quality_scores/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -719,16 +774,16 @@ validation_endpoints = {
         'doc': 'A little more detail than global percentiles.\n'
                'This is still a very high level summary, but covers metrics of interest not '
                'included in percentiles, or a little more detail than just percentile.',
-        'url': 'validation/key_validation_stats/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/key_validation_stats/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
     'getDiffractionRefinementDescriptors': {
-        'doc': 'Descriptors of diffraction data and refinement - a bit like table-1\n'
+        'doc': 'Descriptors of diffraction data and refinement - a bit like table-1.\n'
                '',
-        'url': 'validation/xray_refine_data_stats/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/xray_refine_data_stats/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -736,8 +791,8 @@ validation_endpoints = {
         'doc': 'Ramachandran and sidechain outliers in protein chains.\n'
                'This call returns backbone and sidechain outliers in protien chains, as '
                'calculated by Molprobity as part of wwPDB validation pipeline.',
-        'url': 'validation/protein-ramachandran-sidechain-outliers/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/protein-ramachandran-sidechain-outliers/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -746,8 +801,8 @@ validation_endpoints = {
                'This call returns Ramachandran status (favoured, outlier, etc.), '
                'phi-psi values, sidechain status (rotamer name or outlier) as reported '
                'by Molprobity component of the wwPDB validation pipeline.',
-        'url': 'validation/rama_sidechain_listing/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/rama_sidechain_listing/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -755,8 +810,8 @@ validation_endpoints = {
         'doc': 'Suite and pucker outliers in RNA chains.\n'
                'This call returns RNA backbone outliers, i.e. non-rotameric suites and unusual '
                'puckers, as calculated by Molprobity as part of wwPDB validation pipeline.',
-        'url': 'validation/RNA_pucker_suite_outliers/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/RNA_pucker_suite_outliers/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -765,8 +820,8 @@ validation_endpoints = {
                'A residue can have many types of geometric or experimental-data-based outliers. '
                'This call lists all kinds of outliers found in a residue. For residues with no '
                'recorded outlier, there is no information returned.',
-        'url': 'validation/residuewise_outlier_summary/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/residuewise_outlier_summary/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -774,8 +829,8 @@ validation_endpoints = {
         'doc': 'Residues with geometric outliers in protein, DNA, RNA chains.\n'
                'Lists residues in protein, DNA, RNA chains that contain various types '
                'of geometry outliers.',
-        'url': 'validation/protein-RNA-DNA-geometry-outlier-residues/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/protein-RNA-DNA-geometry-outlier-residues/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -783,8 +838,8 @@ validation_endpoints = {
         'doc': 'A list of van der Waal overlaps in unit-id notation.\n'
                'Lists pairs of atoms (in unit-id convention) that have van der Waal '
                'clash according to MolProbity.',
-        'url': 'validation/vdw_clashes/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/vdw_clashes/entry/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -792,8 +847,8 @@ validation_endpoints = {
         'doc': 'All outliers in unit-id notation.\n'
                'Lists outliers of all types using the unit-id notation to describe atoms '
                'or residues involved.',
-        'url': 'validation/outliers/all/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/outliers/all/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -805,8 +860,8 @@ topology_endpoints = {
         'doc': '2D secondary structure layout for protein chains in the entry.\n'
                'Returns coordinates for drawing secondary structure diagrams using one of '
                'the PDBsum packages maintained by Roman Laskowski.',
-        'url': 'topology/entry/{{pdbid}}',
-        'vars': [var_types['pdbid']],
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/topology/entry/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -814,8 +869,10 @@ topology_endpoints = {
         'doc': '2D secondary structure layout for a particular protein chain in the entry.\n'
                'Returns coordinates for drawing secondary structure diagrams using one of '
                'the PDBsum packages maintained by Roman Laskowski.',
-        'url': 'topology/entry/{{pdbid}}/chain/{{chainid}}',
-        'vars': [var_types['pdbid'], var_types['chainid']],
+        'var': {'pdbid': var_types['pdbid'],
+                'chainid': var_types['chainid']
+                },
+        'url': 'api/topology/entry/{{pdbid}}/chain/{{chainid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -829,13 +886,12 @@ search_endpoints = {
                'protein, DNA, RNA or sugar. Output from the call depends on the query sent '
                'to Solr. Query parameters are well documented in Solr documentation.\n'
                'Check http://www.ebi.ac.uk/pdbe/api/doc/search.html for more information',
-        'url': 'pdb/select?{{query}}',
-        'vars': [var_types['query']],
-        'method': ['GET', 'POST'],
+        'var': {'query': var_types['query']},
+        'url': 'search/pdb/select?{{query}}',
+        'method': ['GET'],
         'content_type': 'application/json'
     },
 }
-
 
 # entire REST API
 api_endpoints = {
@@ -872,8 +928,3 @@ http_status_codes = {
           'pdbe team'),
     503: ('Service Unavailable', 'The service is temporarily down; retry after a pause'),
 }
-
-# set user agent
-ensembl_user_agent = {'User-Agent': 'pyPDBeREST v' + __version__}
-ensembl_content_type = {'Content-Type': 'application/json'}
-
