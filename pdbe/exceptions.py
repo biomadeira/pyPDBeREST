@@ -62,7 +62,7 @@ class RestServiceUnavailable(RestError):
     pass
 
 
-class PostNotSupported(RestError):
+class RestPostNotSupported(RestError):
     """
         Raised when POST method is not supported.
     """
