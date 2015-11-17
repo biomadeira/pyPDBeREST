@@ -27,7 +27,7 @@ __author__ = "Fábio Madeira"
 __copyright__ = "Copyright 2015, Fábio Madeira"
 __credits__ = ["Fábio Madeira"]
 __license__ = "GNU GPLv3"
-__version__ = "0.1.1=0"
+__version__ = "0.1.0"
 __maintainer__ = "Fábio Madeira"
 __email__ = "fabiomadeira@me.com"
 __status__ = "beta"
