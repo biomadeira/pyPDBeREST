@@ -39,6 +39,9 @@ setup(
     # Package dependencies.
     install_requires=['requests>=2.7.0'],
 
+    # tests
+    test_suite="tests.test_pdberest",
+
     # Metadata for PyPI.
     author=__author__,
     author_email=__email__,

@@ -173,9 +173,9 @@ class TestPDBeREST(unittest.TestCase):
         if the results are valid.
         """
 
-        msg = "===Calling all the available endpoints...===\n" \
-              "** This will fail if the service is down! **"
-        print(msg)
+        # msg = "===Calling all the available endpoints...===\n" \
+        #       "** This will fail if the service is down! **"
+        # print(msg)
 
         # PDB
         self.assertTrue(self.p.PDB.getReleaseStatus(pdbid='2pah'))
