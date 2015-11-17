@@ -118,21 +118,21 @@ class pyPDBeREST(object):
                 subclass.__dict__[fun_name].__name__ = fun_name
 
                 # set __doc__ for generic class method
-                if api_endpoints[top_name][fun_name].has_key("doc"):
+                if "doc" in api_endpoints[top_name][fun_name]:
                     subclass.__dict__[fun_name].__doc__ = api_endpoints[top_name][fun_name]["doc"]
 
                 # add special attributes - access to full func record
                 subclass.__dict__[fun_name].__full__ = api_endpoints[top_name][fun_name]
 
-                if api_endpoints[top_name][fun_name].has_key("url"):
+                if "url" in api_endpoints[top_name][fun_name]:
                     subclass.__dict__[fun_name].url = api_endpoints[top_name][fun_name]['url']
-                if api_endpoints[top_name][fun_name].has_key("method"):
+                if "method" in api_endpoints[top_name][fun_name]:
                     subclass.__dict__[fun_name].method = api_endpoints[top_name][fun_name]['method']
-                if api_endpoints[top_name][fun_name].has_key("doc"):
+                if "doc" in api_endpoints[top_name][fun_name]:
                     subclass.__dict__[fun_name].doc = api_endpoints[top_name][fun_name]['doc']
-                if api_endpoints[top_name][fun_name].has_key("var"):
+                if "var" in api_endpoints[top_name][fun_name]:
                     subclass.__dict__[fun_name].var = api_endpoints[top_name][fun_name]['var']
-                if api_endpoints[top_name][fun_name].has_key("content_type"):
+                if "content_type" in api_endpoints[top_name][fun_name]:
                     subclass.__dict__[fun_name].content_type = api_endpoints[top_name][fun_name]['content_type']
 
     # gets the available endpoints implemented in the PDBe REST API
@@ -163,7 +163,7 @@ class pyPDBeREST(object):
 
         # check up mandatory parameters
         for param in mandatory_params:
-            if not kwargs.has_key(param):
+            if param not in kwargs:
                 logger.debug("'%s' param not specified. Mandatory params are %s"
                                 % (param, mandatory_params))
                 raise Exception("mandatory param '%s' not specified" % param)
