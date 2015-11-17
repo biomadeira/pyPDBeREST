@@ -46,7 +46,7 @@ setup(
     url='http://github.com/biomadeira/pypdberest/tree/master',
     keywords='pdbe rest api json python',
     description='A python wrapper for the PDBe REST API.',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
