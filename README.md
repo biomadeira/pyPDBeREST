@@ -1,4 +1,7 @@
 # pyPDBeREST
+
+[![Build Status](https://secure.travis-ci.org/biomadeira/pyPDBeREST.png?branch=master)](http://travis-ci.org/biomadeira/pyPDBeREST)
+
 A python wrapper for the [PDBe REST API](http://www.ebi.ac.uk/pdbe/api/doc/), inspired by [pyEnsemblRest](https://github.com/pyOpenSci/pyEnsemblRest).
 
 
