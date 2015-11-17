@@ -1,0 +1,5 @@
+recursive-include docs *.md
+include README.md
+include LICENSE.txt
+#include CHANGELOG.rst
+include tests
