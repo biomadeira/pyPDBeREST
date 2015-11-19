@@ -248,7 +248,7 @@ these `notes`_.
 Dependencies
 ~~~~~~~~~~~~
 
-|Python: versions|
+|Python|
 
 See the necessary `requirements`_ for this module.
 
@@ -263,12 +263,12 @@ License
 
 GNU General Public License v3 (GPLv3). See `license`_ for details.
 
-.. _notes: Examples.ipynb
+.. _notes: https://github.com/biomadeira/pyPDBeREST/Examples.ipynb
 .. _PDBe REST API: http://www.ebi.ac.uk/pdbe/api/doc/
 .. _pyEnsemblRest: https://github.com/pyOpenSci/pyEnsemblRest
-.. _requirements: requirements.txt
+.. _requirements: https://github.com/biomadeira/pyPDBeREST/requirements.txt
 .. _issue tracker: https://github.com/biomadeira/pyPDBeREST/issues
-.. _license: LICENSE.md
+.. _license: https://github.com/biomadeira/pyPDBeREST/LICENSE.md
 
 .. |Build Status| image:: https://secure.travis-ci.org/biomadeira/pyPDBeREST.png?branch=master
    :target: http://travis-ci.org/biomadeira/pyPDBeREST
@@ -278,6 +278,5 @@ GNU General Public License v3 (GPLv3). See `license`_ for details.
    :target: https://github.com/biomadeira/pyPDBeREST/blob/master/LICENSE.md
 .. |Twitter: @biomadeira| image:: https://img.shields.io/badge/contact-@biomadeira-blue.svg?style=flat
    :target: https://twitter.com/biomadeira
-.. |Python: versions| image:: https://img.shields.io/badge/python-2.7,_3.3,_3.4,_3.5,_pypy,_pypy3-blue.svg?style=flat
-   :target: http://travis-ci.org/biomadeira/pyPDBeREST
+.. |Python| image:: https://img.shields.io/pypi/pyversions/pyPDBeREST.svg?style=plastic   :target: https://pypi.python.org/pypi/pyPDBeREST
    
