@@ -367,11 +367,11 @@ class TestPDBeREST(unittest.TestCase):
         self.p.TOPOLOGY.getTopology = MagicMock(return_value=response)
         self.assertTrue(self.p.TOPOLOGY.getTopology(pdbid='1csb'))
 
-        # SEARCH
-        k = {'query': 'q=pfam_name:Lipocalin&wt=json'}
-        response = response_mocker(k, self.p.base_url, self.p.SEARCH.getSearch.url)
-        self.p.SEARCH.getSearch = MagicMock(return_value=response)
-        self.assertTrue(self.p.SEARCH.getSearch(query='q=pfam_name:Lipocalin&wt=json'))
+        # SEARCH (TODO)
+        # k = {'query': 'q=pfam_name:Lipocalin&wt=json'}
+        # response = response_mocker(k, self.p.base_url, self.p.SEARCH.getSearch.url)
+        # self.p.SEARCH.getSearch = MagicMock(return_value=response)
+        # self.assertTrue(self.p.SEARCH.getSearch(query='q=pfam_name:Lipocalin&wt=json'))
 
     def test_wrong_parameter_for_endpoint_pyPDBeREST(self):
         """
