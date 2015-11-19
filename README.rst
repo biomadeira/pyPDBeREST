@@ -263,12 +263,12 @@ License
 
 GNU General Public License v3 (GPLv3). See `license`_ for details.
 
-.. _notes: https://github.com/biomadeira/pyPDBeREST/Examples.ipynb
+.. _notes: https://github.com/biomadeira/pyPDBeREST/blob/master/Examples.ipynb
 .. _PDBe REST API: http://www.ebi.ac.uk/pdbe/api/doc/
 .. _pyEnsemblRest: https://github.com/pyOpenSci/pyEnsemblRest
-.. _requirements: https://github.com/biomadeira/pyPDBeREST/requirements.txt
+.. _requirements: https://github.com/biomadeira/pyPDBeREST/blob/master/requirements.txt
 .. _issue tracker: https://github.com/biomadeira/pyPDBeREST/issues
-.. _license: https://github.com/biomadeira/pyPDBeREST/LICENSE.md
+.. _license: https://github.com/biomadeira/pyPDBeREST/blob/master/LICENSE.md
 
 .. |Build Status| image:: https://secure.travis-ci.org/biomadeira/pyPDBeREST.png?branch=master
    :target: http://travis-ci.org/biomadeira/pyPDBeREST
