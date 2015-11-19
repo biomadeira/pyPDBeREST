@@ -48,6 +48,8 @@ class pyPDBeREST(object):
         self.reqs_per_sec = 15
         self.req_count = 0
         self.last_req = 0
+        # request response object
+        self.response = None
 
         # initialise default values
         default_base_url = default_url
@@ -165,7 +167,15 @@ class pyPDBeREST(object):
         for param in mandatory_params:
             if param not in kwargs:
                 logger.debug("'%s' param not specified. Mandatory params are %s"
-                                % (param, mandatory_params))
+                             % (param, mandatory_params))
+                raise Exception("mandatory param '%s' not specified" % param)
+
+        # also check for unrecognised parameters
+        for param in kwargs:
+            # skip the parameter 'method'
+            if param not in mandatory_params and param is not 'method':
+                logger.debug("'%s' param not recognised. Mandatory params are %s"
+                             % (param, mandatory_params))
                 raise Exception("mandatory param '%s' not specified" % param)
 
         # get formatted urls
@@ -205,17 +215,29 @@ class pyPDBeREST(object):
             logger.info("Submitting a GET request. url = '%s', headers = %s, params = %s" % (
                 url, {"Content-Type": func['content_type']}, kwargs))
             # do get request
-            resp = self.session.get(url, headers={"Content-Type": func['content_type']}, params=kwargs)
+            try:
+                resp = self.session.get(url, headers={"Content-Type": func['content_type']}, params=kwargs)
+            except requests.ConnectionError:
+                # making fake 500 status response
+                resp = type('resp', (object,), {'status_code': 500})
+                resp = resp()
 
         elif self.session.method in func['method'] and self.session.method == 'POST':
             logger.info("Submitting a POST request. url = '%s', data = '%s', headers = %s, params = %s" % (
                 url, data, {"Content-Type": func['content_type']}, kwargs))
             # do post the request
-            resp = self.session.post(url, headers={"Content-Type": func['content_type']}, data=data)
-
+            try:
+                resp = self.session.post(url, headers={"Content-Type": func['content_type']}, data=data)
+            except requests.ConnectionError:
+                # making fake 500 status response
+                resp = type('resp', (object,), {'status_code': 500})
+                resp = resp()
         else:
             raise NotImplementedError("Method '%s' not yet implemented. Available methods are: '%s'"
                                       % (self.session.method, "', '".join(func['method'])))
+
+        # update response attribute
+        self.response = resp
 
         # increment the request counter to rate limit requests
         self.req_count += 1
