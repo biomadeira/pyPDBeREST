@@ -1,7 +1,7 @@
 pyPDBeREST
 ==========
 
-|Twitter: @biomadeira| |Build Status| |Coverage Status| |License|
+|Build Status| |Coverage Status| |License| |Twitter: @biomadeira|
 
 A python wrapper for the `PDBe REST API`_, inspired by `pyEnsemblRest`_.
 
@@ -266,19 +266,18 @@ GNU General Public License v3 (GPLv3). See `license`_ for details.
 .. _notes: Examples.ipynb
 .. _PDBe REST API: http://www.ebi.ac.uk/pdbe/api/doc/
 .. _pyEnsemblRest: https://github.com/pyOpenSci/pyEnsemblRest
-.. _notes: Examples.ipynb
 .. _requirements: requirements.txt
 .. _issue tracker: https://github.com/biomadeira/pyPDBeREST/issues
 .. _license: LICENSE.md
 
-.. |Twitter: @biomadeira| image:: https://img.shields.io/badge/contact-@biomadeira-blue.svg?style=flat
-   :target: https://twitter.com/biomadeira
 .. |Build Status| image:: https://secure.travis-ci.org/biomadeira/pyPDBeREST.png?branch=master
    :target: http://travis-ci.org/biomadeira/pyPDBeREST
 .. |Coverage Status| image:: https://coveralls.io/repos/biomadeira/pyPDBeREST/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/biomadeira/pyPDBeREST?branch=master
 .. |License| image:: http://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat
    :target: https://github.com/biomadeira/pyPDBeREST/blob/master/LICENSE.md
+.. |Twitter: @biomadeira| image:: https://img.shields.io/badge/contact-@biomadeira-blue.svg?style=flat
+   :target: https://twitter.com/biomadeira
 .. |Python: versions| image:: https://img.shields.io/badge/python-2.7,_3.3,_3.4,_3.5,_pypy,_pypy3-blue.svg?style=flat
    :target: http://travis-ci.org/biomadeira/pyPDBeREST
    
