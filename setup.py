@@ -37,7 +37,7 @@ setup(
     include_package_data=True,
 
     # Package dependencies.
-    install_requires=['requests>=2.7.0'],
+    install_requires=['requests>=2.7.0', 'responses'],
 
     # tests
     test_suite="tests.test_pdberest",
@@ -53,19 +53,18 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Scientific/Engineering :: Bio-informatics',
-        'Topic :: Internet',
-        'Topic :: REST API',
-        'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
-        "Programming Language :: Python :: Implementation :: PyPy",
-        "Programming Language :: Python :: Implementation :: PyPy3",
+        'Programming Language :: Python :: Implementation :: PyPy',
+        'Programming Language :: Python :: Implementation :: PyPy3',
+        'Topic :: Internet',
+        'Topic :: Scientific/Engineering :: Bio-informatics',
+        'Topic :: Software Development :: Libraries :: Python Modules',
     ]
 )
 
