@@ -173,7 +173,7 @@ class pyPDBeREST(object):
         # also check for unrecognised parameters
         for param in kwargs:
             # skip the parameter 'method'
-            if param not in mandatory_params and param is not 'method':
+            if param not in mandatory_params and param != 'method':
                 logger.debug("'%s' param not recognised. Mandatory params are %s"
                              % (param, mandatory_params))
                 raise Exception("mandatory param '%s' not specified" % param)
