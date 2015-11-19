@@ -91,18 +91,185 @@ GET
     data = p.PDB.getSummary(pdbid='1cbs')
     print(data)
 
-\`\`\`javascript { “2pah”: [ { “related\_structures”: [],
-“split\_entry”: [], “title”: “TETRAMERIC HUMAN PHENYLALANINE
-HYDROXYLASE”, “release\_date”: “19991006”, “experimental\_method”: [
-“X-ray diffraction” ], “experimental\_method\_class”: [ “x-ray” ],
-“revision\_date”: “20110713”, “entry\_authors”: [ “Stevens, R.C.”,
-“Fusetti, F.”, “Erlandsen, H.” ], “deposition\_site”: “BNL”,
-“number\_of\_entities”: { “polypeptide”: 1, “dna”: 0, “ligand”: 1,
-“dna/rna”: 0, “rna”: 0, “sugar”: 0, “water”: 0,
+.. code:: javascript 
 
+    {
+        "2pah": [
+            {
+                "related_structures": [], 
+                "split_entry": [], 
+                "title": "TETRAMERIC HUMAN PHENYLALANINE HYDROXYLASE", 
+                "release_date": "19991006", 
+                "experimental_method": [
+                    "X-ray diffraction"
+                ], 
+                "experimental_method_class": [
+                    "x-ray"
+                ], 
+                "revision_date": "20110713", 
+                "entry_authors": [
+                    "Stevens, R.C.", 
+                    "Fusetti, F.", 
+                    "Erlandsen, H."
+                ], 
+                "deposition_site": "BNL", 
+                "number_of_entities": {
+                    "polypeptide": 1, 
+                    "dna": 0, 
+                    "ligand": 1, 
+                    "dna/rna": 0, 
+                    "rna": 0, 
+                    "sugar": 0, 
+                    "water": 0, 
+                    "other": 0
+                }, 
+                "processing_site": "RCSB", 
+                "deposition_date": "19980526", 
+                "assemblies": [
+                    {
+                        "assembly_id": "1", 
+                        "form": "homo", 
+                        "preferred": true, 
+                        "name": "tetramer"
+                    }
+                ]
+            }
+        ]
+    }
+
+
+POST
+''''
+
+Not all endpoints enable post requests. Those will raise a
+``NotImplementedError()`` exception.
+
+.. code:: python
+
+    # an example POST query...
+    # up to 1000 pdb ids can be queried with post methods
+    data = p.PDB.getSummary(pdbid='1cbs, 2pah', method='POST')
+    print(data)
+
+.. code:: javascript
+
+    {
+        "1cbs": [
+            {
+                "related_structures": [], 
+                "split_entry": [], 
+                "title": "CRYSTAL STRUCTURE OF CELLULAR RETINOIC-ACID-BINDING PROTEINS I AND II IN COMPLEX WITH ALL-TRANS-RETINOIC ACID AND A SYNTHETIC RETINOID", 
+                "release_date": "19950126", 
+                "experimental_method": [
+                    "X-ray diffraction"
+                ], 
+                "experimental_method_class": [
+                    "x-ray"
+                ], 
+                "revision_date": "20090224", 
+                "entry_authors": [
+                    "Kleywegt, G.J.", 
+                    "Bergfors, T.", 
+                    "Jones, T.A."
+                ], 
+                "deposition_site": null, 
+                "number_of_entities": {
+                    "polypeptide": 1, 
+                    "dna": 0, 
+                    "ligand": 1, 
+                    "dna/rna": 0, 
+                    "rna": 0, 
+                    "sugar": 0, 
+                    "water": 1, 
+                    "other": 0
+                }, 
+                "processing_site": null, 
+                "deposition_date": "19940928", 
+                "assemblies": [
+                    {
+                        "assembly_id": "1", 
+                        "form": "homo", 
+                        "preferred": true, 
+                        "name": "monomer"
+                    }
+                ]
+            }
+        ], 
+        "2pah": [
+            {
+                "related_structures": [], 
+                "split_entry": [], 
+                "title": "TETRAMERIC HUMAN PHENYLALANINE HYDROXYLASE", 
+                "release_date": "19991006", 
+                "experimental_method": [
+                    "X-ray diffraction"
+                ], 
+                "experimental_method_class": [
+                    "x-ray"
+                ], 
+                "revision_date": "20110713", 
+                "entry_authors": [
+                    "Stevens, R.C.", 
+                    "Fusetti, F.", 
+                    "Erlandsen, H."
+                ], 
+                "deposition_site": "BNL", 
+                "number_of_entities": {
+                    "polypeptide": 1, 
+                    "dna": 0, 
+                    "ligand": 1, 
+                    "dna/rna": 0, 
+                    "rna": 0, 
+                    "sugar": 0, 
+                    "water": 0, 
+                    "other": 0
+                }, 
+                "processing_site": "RCSB", 
+                "deposition_date": "19980526", 
+                "assemblies": [
+                    {
+                        "assembly_id": "1", 
+                        "form": "homo", 
+                        "preferred": true, 
+                        "name": "tetramer"
+                    }
+                ]
+            }
+        ]
+    }
+
+
+Looking for more?
+'''''''''''''''''
+
+For a full set of examples and more details on all functionality see
+these `notes`_.
+
+Dependencies
+~~~~~~~~~~~~
+
+|Python: versions|
+
+See the necessary `requirements`_ for this module.
+
+Contributing and Bug tracking
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Feel free to fork, clone, share and distribute. If you find any bugs or
+issues please log them in the `issue tracker`_.
+
+License
+~~~~~~~
+
+GNU General Public License v3 (GPLv3). See `license`_ for details.
+
+.. _notes: Examples.ipynb
 .. _PDBe REST API: http://www.ebi.ac.uk/pdbe/api/doc/
 .. _pyEnsemblRest: https://github.com/pyOpenSci/pyEnsemblRest
 .. _notes: Examples.ipynb
+.. _requirements: requirements.txt
+.. _issue tracker: https://github.com/biomadeira/pyPDBeREST/issues
+.. _license: LICENSE.md
 
 .. |Twitter: @biomadeira| image:: https://img.shields.io/badge/contact-@biomadeira-blue.svg?style=flat
    :target: https://twitter.com/biomadeira
@@ -112,3 +279,6 @@ HYDROXYLASE”, “release\_date”: “19991006”, “experimental\_method”:
    :target: https://coveralls.io/github/biomadeira/pyPDBeREST?branch=master
 .. |License| image:: http://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat
    :target: https://github.com/biomadeira/pyPDBeREST/blob/master/LICENSE.md
+.. |Python: versions| image:: https://img.shields.io/badge/python-2.7,_3.3,_3.4,_3.5,_pypy,_pypy3-blue.svg?style=flat
+   :target: http://travis-ci.org/biomadeira/pyPDBeREST
+   
