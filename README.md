@@ -240,7 +240,7 @@ For a full set of examples and more details on all functionality see these [note
 
 ### Dependencies
 
-[![Python: versions](https://img.shields.io/badge/python-2.7,&nbsp;3.3,&nbsp;3.4,&nbsp;3.5,&nbsp;pypy,&nbsp;pypy3-blue.svg?style=flat)]()
+[![Python: versions](https://img.shields.io/badge/python-2.7,_3.3,_3.4,_3.5,_pypy,_pypy3-blue.svg?style=flat)](http://travis-ci.org/biomadeira/pyPDBeREST)
 
 See the necessary [requirements](requirements.txt) for this module.
 
