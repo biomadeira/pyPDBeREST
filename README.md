@@ -1,7 +1,10 @@
 # pyPDBeREST
 
+[![Twitter: @biomadeira](https://img.shields.io/badge/contact-@biomadeira-blue.svg?style=flat)](https://twitter.com/biomadeira)
 [![Build Status](https://secure.travis-ci.org/biomadeira/pyPDBeREST.png?branch=master)](http://travis-ci.org/biomadeira/pyPDBeREST) 
 [![Coverage Status](https://coveralls.io/repos/biomadeira/pyPDBeREST/badge.svg?branch=master&service=github)](https://coveralls.io/github/biomadeira/pyPDBeREST?branch=master)
+[![License](http://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](https://github.com/biomadeira/pyPDBeREST/blob/master/LICENSE.md)
+
 
 A python wrapper for the [PDBe REST API](http://www.ebi.ac.uk/pdbe/api/doc/), inspired by [pyEnsemblRest](https://github.com/pyOpenSci/pyEnsemblRest).
 
@@ -236,6 +239,9 @@ print(data)
 For a full set of examples and more details on all functionality see these [notes](Examples.ipynb).
 
 ### Dependencies
+
+[![Python: versions](https://img.shields.io/badge/python-2.7,&nbsp;3.3,&nbsp;3.4,&nbsp;3.5,&nbsp;pypy,&nbsp;pypy3-blue.svg?style=flat)]()
+
 See the necessary [requirements](requirements.txt) for this module.
 
 
