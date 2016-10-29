@@ -14,7 +14,11 @@ import unittest
 import logging
 import requests
 import responses
-from mock import Mock, MagicMock
+try:
+    from mock import Mock, MagicMock
+except ImportError:
+    # python 3
+    from unittest.mock import Mock, MagicMock
 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
