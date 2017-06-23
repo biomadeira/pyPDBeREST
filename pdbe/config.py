@@ -337,6 +337,14 @@ pdb_endpoints = {
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
+    'getElectronDensityStatistics': {
+        'doc': 'Electron density statistics.\n'
+               'This call details the statistics for electron density.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/electron_density_statistics/{{pdbid}}',
+        'method': ['GET', 'POST'],
+        'content_type': 'application/json'
+    },
 }
 
 # Compounds Endpoint
@@ -539,6 +547,43 @@ sifts_endpoints = {
                'that reflects discontinuities in the UniProt sequence.',
         'var': {'pdbid': var_types['pdbid']},
         'url': 'api/mappings/uniprot_segments/{{pdbid}}',
+        'method': ['GET'],
+        'content_type': 'application/json'
+    },
+    'getPDBUniProtBestIsoform': {
+        'doc': 'SIFTS Mappings (PDB -> UniProt best isoform).\n'
+               'Mappings (as assigned by the SIFTS process) from PDB structures to UniProt. '
+               'It returns the best isoform found in UniProt.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/isoforms/{{pdbid}}',
+        'method': ['GET'],
+        'content_type': 'application/json'
+    },
+    'getPDBUniProtAllIsoforms': {
+        'doc': 'SIFTS Mappings (PDB -> UniProt all isoforms).\n'
+               'Mappings (as assigned by the SIFTS process) from PDB structures to UniProt. '
+               'It returns all the mappings to the UniProt isoforms of the canonical accession.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/all_isoforms/{{pdbid}}',
+        'method': ['GET'],
+        'content_type': 'application/json'
+    },
+    'getPDBUniProtUniRef90': {
+        'doc': 'SIFTS Mappings (PDB -> UniProt UniRef90 cluster members).\n'
+               'Mappings (as assigned by the SIFTS process) from PDB structures to UniProt. '
+               'It returns mappings to all the UniRef90 members of the UniProt accession.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/uniref90/{{pdbid}}',
+        'method': ['GET'],
+        'content_type': 'application/json'
+    },
+    'getPDBUniProtUniRef90Homologene': {
+        'doc': 'SIFTS Mappings (PDB -> Members of both UniProt UniRef90 and '
+               'Homologene clusters).\n Mappings (as assigned by the SIFTS process) from PDB '
+               'structures to UniProt. It returns mappings to all the UniRef90 members of the '
+               'UniProt accession which also belong to the same Homologene clusters.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/homologene_uniref90/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -916,6 +961,26 @@ validation_endpoints = {
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
+    'getNMRDomains': {
+        'doc': 'Domains (cores) identified by the NMR validation pipeline.\n'
+               'This call returns the domains (cores) that were identified by the '
+               'NMR validation pipeline. A representative model is chosen based on '
+               'this precedence- 1) Whether or not it is the medoid model, '
+               '2) Author-selected model, 3) Model number 1.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/nmr_cyrange_cores/entry/{{pdbid}}',
+        'method': ['GET', 'POST'],
+        'content_type': 'application/json'
+    },
+    'getNMRClusterAnalysis': {
+        'doc': 'Information on NMR ensemble cluster analysis.\n'
+               'This call returns clusters within NMR ensembles and cluster representatives, '
+               'defined by NMRCLUST software, part of the validation pipeline.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/validation/nmr_ensemble_clustering/entry/{{pdbid}}',
+        'method': ['GET', 'POST'],
+        'content_type': 'application/json'
+    },
 }
 
 # Topology Endpoint
@@ -993,4 +1058,4 @@ http_status_codes = {
     503: ('Service Unavailable', 'The service is temporarily down; retry after a pause'),
 }
 
-api_version = "1.3"
+api_version = "1.4"
