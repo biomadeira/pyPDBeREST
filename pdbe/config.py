@@ -928,3 +928,5 @@ http_status_codes = {
           'pdbe team'),
     503: ('Service Unavailable', 'The service is temporarily down; retry after a pause'),
 }
+
+api_version = "1.1"

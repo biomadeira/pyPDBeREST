@@ -28,7 +28,7 @@ import requests
 
 # import pdberest modules
 from .config import (default_url, api_endpoints, http_status_codes,
-                     user_agent, content_type)
+                     user_agent, content_type, api_version)
 from .exceptions import RestError, RestRateLimitError, RestServiceUnavailable
 
 # Logger instance
@@ -79,6 +79,8 @@ class pyPDBeREST(object):
             self.session_args['method'] = default_method
         if 'pretty_json' not in self.session_args:
             self.session_args['pretty_json'] = default_pretty_json
+        if 'api_version' not in self.session_args:
+            self.session_args['api_version'] = api_version
 
         # setup requests session
         self.session = requests.Session()
@@ -86,7 +88,7 @@ class pyPDBeREST(object):
         # update requests client with arguments
         client_args_copy = self.session_args.copy()
         for key, val in client_args_copy.items():
-            if key in ('base_url', 'proxies', 'method', 'pretty_json'):
+            if key in ('base_url', 'proxies', 'method', 'pretty_json', 'api_version'):
                 # update session
                 setattr(self.session, key, val)
                 self.session_args.pop(key)
