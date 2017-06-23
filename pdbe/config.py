@@ -151,6 +151,17 @@ pdb_endpoints = {
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
+    'getEntities': {
+        'doc': 'Molecules in the entry (alias /entry/entities).\n'
+               'This call provides the details of molecules (or entities in mmcif-speak) '
+               'modelled in the entry, such as entity id, description, type, polymer-type '
+               '(if applicable), number of copies in the entry, sample preparation method, '
+               'source organism(s) (if applicable), etc.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/molecules/{{pdbid}}',
+        'method': ['GET', 'POST'],
+        'content_type': 'application/json'
+    },
     'getPublications': {
         'doc': 'Publications associated with the entry (alias /entry/citations).\n'
                'This call provides details of publications associated with an entry, such '
@@ -290,6 +301,27 @@ pdb_endpoints = {
                'constraints files, etc. Please note that these files are also available on https.',
         'var': {'pdbid': var_types['pdbid']},
         'url': 'api/pdb/entry/files/{{pdbid}}',
+        'method': ['GET', 'POST'],
+        'content_type': 'application/json'
+    },
+    'getPolymerCoverage': {
+        'doc': 'Observed ranges in a PDB chain.\n'
+               'This call provides observed ranges, i.e. segments of structural coverage, of '
+               'polymeric molecules in a particular chain.',
+        'var': {'pdbid': var_types['pdbid'],
+                'chainid': var_types['chainid']},
+        'url': 'api/pdb/entry/polymer_coverage{{pdbid}}/chain/{{chainid}}',
+        'method': ['GET'],
+        'content_type': 'application/json'
+    },
+    'getRatioObservedResidues': {
+        'doc': 'Ratio of observed residues.\n'
+               'This call provides the ratio of observed residues for each chain in each '
+               'molecule (or entity in mmcif-speak) of a pdb entry. The list of chains within '
+               'an entity is sorted by observed_ratio (descending order), partial_ratio '
+               '(ascending order), and number_residues (descending order).',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/observed_residues_ratio/{{pdbid}}',
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
@@ -476,6 +508,15 @@ sifts_endpoints = {
         'var': {'uniprotid': var_types['uniprotid']},
         'url': 'api/mappings/best_structures/{{uniprotid}}',
         'method': ['GET', 'POST'],
+        'content_type': 'application/json'
+    },
+    'getUniProtPfam': {
+        'doc': 'UniProt to Pfam mapping.\n'
+               'Mappings (as assigned by the SIFTS process) from a UniProt accession to '
+               'a Pfam accession with details of the Pfam protein family.',
+        'var': {'uniprotid': var_types['uniprotid']},
+        'url': 'mappings/uniprot_to_pfam/{{uniprotid}}',
+        'method': ['GET'],
         'content_type': 'application/json'
     },
 }
@@ -929,4 +970,4 @@ http_status_codes = {
     503: ('Service Unavailable', 'The service is temporarily down; retry after a pause'),
 }
 
-api_version = "1.1"
+api_version = "1.2"
