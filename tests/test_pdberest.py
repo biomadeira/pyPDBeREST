@@ -27,6 +27,15 @@ sys.path.insert(1, parentdir)
 
 import pdbe
 
+try:
+    import __builtin__ as builtins
+except ImportError:
+    # python 3
+    import builtins
+
+if 'ResourceWarning' not in vars(builtins):
+    class ResourceWarning(Warning):
+        pass
 
 def response_mocker(kwargs, base_url, endpoint_url, status=200):
     """
