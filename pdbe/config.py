@@ -325,6 +325,18 @@ pdb_endpoints = {
         'method': ['GET', 'POST'],
         'content_type': 'application/json'
     },
+    'getAssemblyInformation': {
+        'doc': 'Assembly information.\n'
+               'This call provides information for each assembly of a given PDB ID. This '
+               'information is broken down at the entity level for each assembly. The '
+               'information given includes the molecule name, type and class, the chains '
+               'where the molecule occur, and the number of copies of each entity in the '
+               'assembly.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/pdb/entry/assembly/{{pdbid}}',
+        'method': ['GET', 'POST'],
+        'content_type': 'application/json'
+    },
 }
 
 # Compounds Endpoint
@@ -516,6 +528,17 @@ sifts_endpoints = {
                'a Pfam accession with details of the Pfam protein family.',
         'var': {'uniprotid': var_types['uniprotid']},
         'url': 'mappings/uniprot_to_pfam/{{uniprotid}}',
+        'method': ['GET'],
+        'content_type': 'application/json'
+    },
+    'getPDBUniProtSegments': {
+        'doc': 'SIFTS Mappings (PDB -> UniProt) with UniProt segments.\n'
+               'Mappings (as assigned by the SIFTS process) from PDB structures to UniProt. '
+               'The segments are calculated using the same rules as with the standard call '
+               'but with the UniProt sequence as reference. The outcome is a set of segments '
+               'that reflects discontinuities in the UniProt sequence.',
+        'var': {'pdbid': var_types['pdbid']},
+        'url': 'api/mappings/uniprot_segments/{{pdbid}}',
         'method': ['GET'],
         'content_type': 'application/json'
     },
@@ -970,4 +993,4 @@ http_status_codes = {
     503: ('Service Unavailable', 'The service is temporarily down; retry after a pause'),
 }
 
-api_version = "1.2"
+api_version = "1.3"
