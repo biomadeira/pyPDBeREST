@@ -14,6 +14,7 @@ import unittest
 import logging
 import requests
 import responses
+import warnings
 try:
     from mock import Mock, MagicMock
 except ImportError:
@@ -52,6 +53,10 @@ class TestPDBeREST(unittest.TestCase):
         self.p = pdbe.pyPDBeREST()
         self.pdb = self.p.PDB
         self.live = False
+        super(TestPDBeREST, self).setUp()
+        warnings.filterwarnings(action="ignore",
+                                message="unclosed",
+                                category=ResourceWarning)
 
     def tearDown(self):
         """Remove testing framework."""
@@ -59,6 +64,10 @@ class TestPDBeREST(unittest.TestCase):
         self.p = None
         self.pdb = None
         self.live = None
+        super(TestPDBeREST, self).tearDown()
+        warnings.filterwarnings(action="ignore",
+                                message="unclosed",
+                                category=ResourceWarning)
 
     def test_loading_config_values_pyPDBeREST(self):
         """
