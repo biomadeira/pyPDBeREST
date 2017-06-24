@@ -437,7 +437,7 @@ sifts_endpoints = {
         'method': ['GET'],
         'content_type': 'application/json'
     },
-    'getPdbUniprot': {
+    'getPdbUniProt': {
         'doc': 'SIFTS Mappings (PDB -> UniProt).\n'
                'Mappings (as assigned by the SIFTS process) from PDB structures to UniProt.',
         'var': {'pdbid': var_types['pdbid']},

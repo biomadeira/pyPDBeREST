@@ -45,7 +45,7 @@ setup(
     # Metadata for PyPI.
     author=__author__,
     author_email=__email__,
-    license='MIT',
+    license='GPLv3',
     url='http://github.com/biomadeira/pypdberest/tree/master',
     keywords='pdbe rest api json python',
     description='A python wrapper for the PDBe REST API.',
