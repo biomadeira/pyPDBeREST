@@ -1,7 +1,7 @@
 pyPDBeREST
 ==========
 
-|Build Status| |Coverage Status| |License| |Twitter: @biomadeira|
+|Build Status| |Coverage Status| |Health| |Python: versions| |License|
 
 A python wrapper for the `PDBe REST API`_, inspired by `pyEnsemblRest`_.
 
@@ -248,8 +248,6 @@ these `notes`_.
 Dependencies
 ~~~~~~~~~~~~
 
-|Python: versions|
-
 See the necessary `requirements`_ for this module.
 
 Contributing and Bug tracking
@@ -276,8 +274,8 @@ GNU General Public License v3 (GPLv3). See `license`_ for details.
    :target: https://coveralls.io/github/biomadeira/pyPDBeREST?branch=master
 .. |License| image:: http://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat
    :target: https://github.com/biomadeira/pyPDBeREST/blob/master/LICENSE.md
-.. |Twitter: @biomadeira| image:: https://img.shields.io/badge/contact-@biomadeira-blue.svg?style=flat
-   :target: https://twitter.com/biomadeira
 .. |Python: versions| image:: https://img.shields.io/badge/python-2.7,_3.3,_3.4,_3.5,_pypy,_pypy3-blue.svg?style=flat
    :target: http://travis-ci.org/biomadeira/pyPDBeREST
+.. |Health| image:: https://landscape.io/github/biomadeira/pyPDBeREST/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/biomadeira/pyPDBeREST/master
    
