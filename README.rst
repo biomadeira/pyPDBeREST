@@ -8,7 +8,16 @@ A python wrapper for the `PDBe REST API`_, inspired by `pyEnsemblRest`_.
 Setup
 ~~~~~
 
-::
+Easy install from github using pip.
+
+.. code:: bash
+
+    $ pip install --upgrade http://github.com/biomadeira/pyPDBeREST/zipball/master
+
+
+If you want to mess up with the source code.
+
+.. code:: bash
 
     git clone https://github.com/biomadeira/pyPDBeREST.git 
     cd pyPDBeREST
